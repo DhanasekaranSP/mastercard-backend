@@ -19,6 +19,14 @@ class PopularCardsListCreateAPIView(generics.ListCreateAPIView):
     queryset = PopularCards.objects.all()
     serializer_class = PopularCardsSerializer
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        is_special = self.request.query_params.get('is_special', None)
+        if is_special is not None:
+            is_special = is_special.lower() == 'true'
+            queryset = queryset.filter(is_special_card=is_special)
+        return queryset
+
 
 class PopularCardsDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = PopularCards.objects.all()

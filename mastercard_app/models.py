@@ -12,3 +12,8 @@ class PopularCards(models.Model):
     title = models.TextField()
     description = models.TextField()
     imageUrl = models.ImageField(upload_to='images/')
+    is_special_card = models.BooleanField(default=False)
+    ctaname = models.TextField(blank=True, null=True)
+
+    # def __str__(self):
+    #     return self.title
