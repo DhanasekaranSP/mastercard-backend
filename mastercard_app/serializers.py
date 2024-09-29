@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Faq, PopularCards
+from .models import Faq, FilterCategory, PopularCards, SubCategories
 
 
 class FAQSerializer(serializers.ModelSerializer):
@@ -24,3 +24,17 @@ class PopularCardsSerializer(serializers.ModelSerializer):
                 representation.pop('ctaname', None)
 
             return representation
+
+
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubCategories
+        fields = ['id', 'childname']
+
+
+class FilterCategorySerializer(serializers.ModelSerializer):
+    childitems = ItemSerializer(many=True)
+
+    class Meta:
+        model = FilterCategory
+        fields = ['id', 'parentname', 'childitems']

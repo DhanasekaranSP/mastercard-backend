@@ -8,10 +8,11 @@ urlpatterns = [
     path('faqs/', views.FAQList.as_view(), name='faq-list'),
     path('popular-cards/', views.PopularCardsListCreateAPIView.as_view(),
          name='popular-cards-list-create'),
-
     path('popular-cards/<int:pk>/',
          views.PopularCardsDetailAPIView.as_view(), name='popular-cards-detail'),
 
+    path('filter-categories/',
+         views.FilterCategoryListView.as_view(), name='title-list'),
 ]
 
 if settings.DEBUG:

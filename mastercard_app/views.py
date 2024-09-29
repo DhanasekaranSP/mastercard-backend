@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import generics
 
-from mastercard_app.models import Faq, PopularCards
-from mastercard_app.serializers import FAQSerializer, PopularCardsSerializer
+from mastercard_app.models import Faq, FilterCategory, PopularCards
+from mastercard_app.serializers import FAQSerializer, PopularCardsSerializer, FilterCategorySerializer
 
 
 def members(request):
@@ -31,3 +31,8 @@ class PopularCardsListCreateAPIView(generics.ListCreateAPIView):
 class PopularCardsDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = PopularCards.objects.all()
     serializer_class = PopularCardsSerializer
+
+
+class FilterCategoryListView(generics.ListAPIView):
+    queryset = FilterCategory.objects.all()
+    serializer_class = FilterCategorySerializer
