@@ -13,6 +13,9 @@ urlpatterns = [
 
     path('filter-categories/',
          views.FilterCategoryListView.as_view(), name='title-list'),
+
+    path('offering-cards/', views.OfferingCardListCreateAPIView.as_view(),
+         name='offering-cards-list'),
 ]
 
 if settings.DEBUG:
